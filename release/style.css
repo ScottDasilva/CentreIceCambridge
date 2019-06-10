@@ -1,0 +1,65 @@
+body {
+    width: 100%;
+    height: 100%;
+    background-image: url(images/hockeyRink.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#directions {
+    
+    height:80vh;
+    border: 5px solid black;
+    background-color: lightskyblue; 
+}
+
+
+
+#myMap {
+    
+    height: 80vh;
+
+}
+
+#postArea  {
+    
+    width: 300px;
+    margin-left: 25%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10px;
+    padding-bottom:10px;
+    border: 2px solid black;
+    background-color: lightblue;
+}
+.posts {
+    
+    height: 80px;
+    border: 2px solid black;
+    width:30%;
+    padding: 6px;
+    background-color:lightblue;
+    margin-left:35%;
+}
+
+.date {
+    width: 20%;
+    margin: 3px 80%;
+    font-size: 0.8em;
+}
+
+.users {
+    background-color:bisque;
+    text-align: center;
+    width: 120px;
+    border: 1px solid black;
+    margin-left: 35%;
+    margin-top: 40px;
+    font-size: 0.9em;
+ 
+}
+
+.view {
+    margin-left:45%;
+}

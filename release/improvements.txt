@@ -1,0 +1,5 @@
+Release version improvements
+
+- search bar is now fully functional
+- Added more information to infoboxes
+- improved navbar toggler functionality (previously did not toggle navbar menu when toggle button was clicked)

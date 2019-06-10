@@ -1,0 +1,223 @@
+<!--Scott Da Silva, 000771150 -->
+<!--This is solely my work.-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type='text/css'>body{margin:0;padding:0;overflow:auto;font-family:'Segoe UI',Helvetica,Arial,Sans-Serif}</style>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Al_1aYttvxu3Bd6CSqRveK3RP6AvEG--Ste5awC4mxi6vc7KlXbrb9J8t6qpRPBC'></script>
+        <script type='text/javascript'></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script type="text/javascript" src="js/jquery-1.10.0.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+    </head>
+    
+        <body onload="loadMapScenario();">
+
+        <div class="container-fluid">
+            <!--NAV-->
+            <div class="row">
+                <nav class="navbar  navbar-expand-lg navbar-dark bg-dark col-lg-12">
+                        <a class="navbar-brand" href="index.html">Centre Ice Cambridge</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="reviews.html">Reviews</a> 
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="writeReview.php">Write a Review</a>
+                            </li>
+                            
+                            <!--Search Bar-->
+                            
+                            <li class="nav-item">
+                                    <input type="text" id="searchBar" placeholder="Search..">
+                                    <input type="button" class="btn btn-primary" value="Search" onclick="searchArena();">
+                            </li>
+                            </ul>
+                        </div>
+                    </nav>
+            </div>
+
+            <!--MAP-->
+                <div class="row">
+                    <div id='myMap' class="col-lg-9"></div>
+                    <!--Directions-->
+                    <div id="directions" class="col-lg-3 overflow-auto">
+                        <h2>Directions</h2>
+                        <p id="directionsItinerary" ></p>
+                    </div>
+                </div>
+            
+        </div>
+
+        
+  
+    </body>
+
+</html>
+
+<script>
+    var arenaList = {"displayFieldName":"ARENA_NAME","fieldAliases":{"OBJECTID":"OBJECTID","ASSET_ID":"ASSET_ID","ARENA_NAME":"Arena Name"},"geometryType":"esriGeometryPoint","spatialReference":{"wkid":4326,"latestWkid":4326},"fields":[{"name":"OBJECTID","type":"esriFieldTypeOID","alias":"OBJECTID"},{"name":"ASSET_ID","type":"esriFieldTypeString","alias":"ASSET_ID","length":50},{"name":"ARENA_NAME","type":"esriFieldTypeString","alias":"Arena Name","length":50}],"features":[{"attributes":{"OBJECTID":1,"ASSET_ID":"PR10001","ARENA_NAME":"DOMM_PARK","address":"55 Princess St", "phone":"519-740-4681"},"geometry":{"x":-80.343295505418226,"y":43.352598972232293}},{"attributes":{"OBJECTID":2,"ASSET_ID":"PR10002","ARENA_NAME":"ANGEWOOD PARK","address":"120 Angela Cres","phone":"519-740-4681"},"geometry":{"x":-80.34032558626113,"y":43.341844590667392}},{"attributes":{"OBJECTID":3,"ASSET_ID":"PR10003","ARENA_NAME":"RIVERSIDE PARK","address":"49 King St W","phone":"519-740-4681"},"geometry":{"x":-80.361867441048346,"y":43.404143040505872}},{"attributes":{"OBJECTID":4,"ASSET_ID":"PR10004","ARENA_NAME":"LINCOLN PARK","address":"65 Centre St","phone":"519-740-4681"},"geometry":{"x":-80.306623303602066,"y":43.351710652527807}},{"attributes":{"OBJECTID":5,"ASSET_ID":"PR10005","ARENA_NAME":"LIONS CAN AMERA PARK","address":"305 Saginaw Pkwy", "phone":"519-740-4681"},"geometry":{"x":-80.294212651011762,"y":43.389545648344807}},{"attributes":{"OBJECTID":6,"ASSET_ID":"PR10006","ARENA_NAME":"VICTORIA PARK","address":"66 Fisher Mills Road", "phone":"519-740-4681"},"geometry":{"x":-80.315347005394514,"y":43.435536139752223}},{"attributes":{"OBJECTID":7,"ASSET_ID":"PR10007","ARENA_NAME":"PRESTON AUDITORIUM","address":"1458 Hamilton St","phone":"519-740-4681"},"geometry":{"x":-80.349487304448729,"y":43.387785148862505}},{"attributes":{"OBJECTID":8,"ASSET_ID":"PR10008","ARENA_NAME":"DICKSON CENTRE","address":"30 Parkhill Road West", "phone":"519-740-4681"},"geometry":{"x":-80.319221738582044,"y":43.363216624317701}},{"attributes":{"OBJECTID":9,"ASSET_ID":"PR10009","ARENA_NAME":"DUNCAN MCINTOSH ARENA","address":"200 Christopher Dr", "phone":"519-740-4681"},"geometry":{"x":-80.306068736516067,"y":43.343571068906869}},{"attributes":{"OBJECTID":10,"ASSET_ID":"PR10010","ARENA_NAME":"GALT ARENA GARDENS","address":"98 Shade St", "phone":"519-740-4681"},"geometry":{"x":-80.306573212211646,"y":43.363029118884143}},{"attributes":{"OBJECTID":11,"ASSET_ID":"PR10011","ARENA_NAME":"HESPELER ARENA","address":"640 Ellis Rd", "phone":"519-740-4681"},"geometry":{"x":-80.291634330473812,"y":43.427884984328003}},{"attributes":{"OBJECTID":12,"ASSET_ID":"PR10012","ARENA_NAME":"HESPELER ARENA","address":"640 Ellis Rd", "phone":"519-740-4681"},"geometry":{"x":-80.291854332628176,"y":43.427370952575217}}]};
+           
+
+        
+    var map, infoBox, userPin, directionsManager, loc, searchValue;
+
+
+
+function loadMapScenario() {
+
+    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+    //Load the directions module.
+    Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function() {
+        //Create an instance of the directions manager.
+        directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+    });
+
+
+    infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+        visible: false
+    });
+
+    infobox.setMap(map);
+
+    getUserPin();
+    showPushPins(arenaList.features);
+
+
+}
+
+function showPushPins(arenaData) {
+
+    for (var i = 0; i < arenaData.length; i++) {
+
+
+        var location = new Microsoft.Maps.Location(arenaData[i]["geometry"].y, arenaData[i]["geometry"].x);
+        var pushpin = new Microsoft.Maps.Pushpin(location);
+
+        pushpin.metadata = {
+            title: arenaData[i]["attributes"].ARENA_NAME,
+            description: arenaData[i]["attributes"].address + "<br>" + arenaData[i]["attributes"].phone + "&nbsp;" + "<img src='images/iceRink.png' height='30' width='30'>"
+        };
+
+        // add click event handler
+        Microsoft.Maps.Events.addHandler(pushpin, 'click', pushpinClicked);
+        //add pushpin
+        map.entities.push(pushpin);
+
+    }
+
+}
+
+function getUserPin() {
+    //Request the user's location
+    navigator.geolocation.getCurrentPosition(function(position) {
+        loc = new Microsoft.Maps.Location(
+            position.coords.latitude,
+            position.coords.longitude);
+
+        //Add a pushpin at the user's location.
+        userPin = new Microsoft.Maps.Pushpin(loc, {
+            color: 'blue'
+        });
+        map.entities.push(userPin);
+
+        //Center the map on the user's location.
+        map.setView({
+            center: loc,
+            zoom: 10
+        });
+    });
+}
+
+function pushpinClicked(e) {
+    // make sure infoboxes have metadata to display
+    if (e.target.metadata) {
+        //set the infobox option with metadata of the pushpin
+        infobox.setOptions({
+            location: e.target.getLocation(),
+            title: e.target.metadata.title,
+            description: e.target.metadata.description,
+            visible: true
+        });
+    }
+
+
+
+
+    directionsManager.clearDisplay();
+    directionsManager.clearAll();
+
+    //Create waypoints to route between.
+    var userWaypoint = new Microsoft.Maps.Directions.Waypoint({
+        location: loc
+    });
+    directionsManager.addWaypoint(userWaypoint);
+
+
+    var destinationWaypoint = new Microsoft.Maps.Directions.Waypoint({
+        address: e.target.metadata.description.address,
+        location: e.target.getLocation()
+    });
+    directionsManager.addWaypoint(destinationWaypoint);
+
+    //Specify the element in which the itinerary will be rendered.
+    directionsManager.setRenderOptions({
+        itineraryContainer: '#directionsItinerary'
+    });
+
+    //Calculate directions.
+    directionsManager.calculateDirections();
+
+}
+
+function searchArena() {
+    searchValue = $("#searchBar").val();
+    var searchFound = false;
+    var searchFor;
+
+    for (var i = 0; i < arenaList.features.length; i++) {
+        searchFor = arenaList.features[i]["attributes"].ARENA_NAME.toLowerCase().includes(searchValue.toLowerCase());
+        if (searchFor === true) {
+            searchFound = true;
+            for (var j = map.entities.getLength() - 1; j >= 0; j--) {
+                var pushpin = map.entities.get(j);
+                if (pushpin instanceof Microsoft.Maps.Pushpin) {
+                    map.entities.removeAt(j);
+                }
+            }
+            var location = new Microsoft.Maps.Location(arenaList.features[i]["geometry"].y, arenaList.features[i]["geometry"].x);
+            var pushpin = new Microsoft.Maps.Pushpin(location);
+
+            pushpin.metadata = {
+                title: arenaList.features[i]["attributes"].ARENA_NAME,
+                description: arenaList.features[i]["attributes"].address + "<br>" + arenaList.features[i]["attributes"].phone + "&nbsp;" + "<img src='images/iceRink.png' height='30' width='30'>"
+            };
+            // add click event handler
+            Microsoft.Maps.Events.addHandler(pushpin, 'click', pushpinClicked);
+            //add pushpin
+            map.entities.push(pushpin);
+            map.setView({
+            center: location,
+            zoom: 15
+        });
+        }
+    }
+    
+    if (searchFound == false) {
+        alert("Arena not found");
+    }
+}
+
+    
+</script>
